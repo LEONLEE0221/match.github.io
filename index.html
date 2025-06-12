@@ -1,500 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Recommendation System</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-    <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
-    <script src="https://unpkg.com/react-select@5.8.0/dist/react-select.browser.production.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .react-select__control {
-            border: 1px solid #e5e7eb;
-            border-radius: 0.375rem;
-            padding: 0.25rem;
-            min-height: 38px;
-        }
-        .react-select__menu {
-            z-index: 10;
-        }
-        .react-select__multi-value {
-            background-color: #e5e7eb;
-            border-radius: 0.25rem;
-        }
-        .react-select__multi-value__label {
-            color: #1f2937;
-        }
-        .react-select__placeholder {
-            color: #6b7280;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Researcher Information System</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="root"></div>
-    <script type="text/jsx">
-        const { useState, useEffect } = React;
-        const Select = window.ReactSelect.default;
+<body class="bg-gray-100">
+  <div id="root"></div>
+  <script type="text/babel">
+    // Initializing React root
+    const { createRoot } = ReactDOM;
+    const root = createRoot(document.getElementById('root'));
 
-        const ProductRecommendationSystem = () => {
-            const [piData, setPiData] = useState([]);
-            const [productData, setProductData] = useState([]);
-            const [filters, setFilters] = useState({
-                pi: [],
-                institute: [],
-                faculty: [],
-                department: [],
-                research: [],
-                product: []
-            });
-            const [selectedProfile, setSelectedProfile] = useState(null);
-            const [viewMode, setViewMode] = useState('card');
-            const [fileLoaded, setFileLoaded] = useState(false);
+    // Main App component
+    const App = () => {
+      // Setting up state for data and filters
+      const [data, setData] = React.useState([]);
+      const [filteredData, setFilteredData] = React.useState([]);
+      const [loading, setLoading] = React.useState(true);
+      const [searchPI, setSearchPI] = React.useState('');
+      const [selectedInstitute, setSelectedInstitute] = React.useState('');
+      const [selectedFaculty, setSelectedFaculty] = React.useState('');
+      const [selectedDepartment, setSelectedDepartment] = React.useState('');
+      const [selectedResearch, setSelectedResearch] = React.useState('');
 
-            // Embedded Research Area 22.csv data
-            const researchAreaData = [
-                { Research: "Aging", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Alzheimer's Disease", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Anti-aging", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Antibodies Development", Product: "Monolith", Product1: "Prometheus" },
-                { Research: "Antibody-based Therapeutics", Product: "Monolith", Product1: "Prometheus" },
-                { Research: "Anticancer", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "AVITI" },
-                { Research: "Autoimmunity", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf" },
-                { Research: "Autoimmune diseases", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf" },
-                { Research: "Bioinformatics", Product: "AVITI" },
-                { Research: "Cancer", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "AVITI" },
-                { Research: "Cancer Biomarkers", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "AVITI" },
-                { Research: "Cancer Cell Biology", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "AVITI" },
-                { Research: "Cancer Metabolism", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "AVITI" },
-                { Research: "Cancer Therapy", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "AVITI" },
-                { Research: "Cell-based High Throughput Screening System", Product: "Monolith" },
-                { Research: "Chinese Medicine", Product: "Monolith" },
-                { Research: "Drug Development", Product: "Monolith" },
-                { Research: "Drug Discovery", Product: "Monolith" },
-                { Research: "Epigenetics", Product: "AVITI", Product1: "Monolith" },
-                { Research: "Exosomes", Product: "Namocell", Product1: "Aurora", Product2: "Wolf", Product3: "AVITI" },
-                { Research: "Extracellular vesicles", Product: "Namocell", Product1: "Aurora", Product2: "Wolf", Product3: "AVITI" },
-                { Research: "Genetic Screening", Product: "AVITI" },
-                { Research: "Genetics", Product: "AVITI" },
-                { Research: "Genome", Product: "AVITI" },
-                { Research: "Genome Editing", Product: "AVITI" },
-                { Research: "Genome-wide screening", Product: "AVITI" },
-                { Research: "Genomics", Product: "AVITI" },
-                { Research: "Gut", Product: "AVITI" },
-                { Research: "Immunity", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Immunology", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Immuotherapy", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Inflammation", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Inflammatory bowel disease", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Inflammatory Diseases", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Inflammatory responses", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "iPSC", Product: "Namocell", Product1: "Aurora", Product2: "Wolf", Product3: "AVITI" },
-                { Research: "Metabolic Disease", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Metabolomics", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Molecular Pharmaceutics", Product: "Monolith" },
-                { Research: "Multi-omics", Product: "AVITI" },
-                { Research: "Neurodegenerative Diseases", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Neurogenesis", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Neuronal Degenerative", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Neurosciences", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Oncogenes", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Oncology", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Parkinson's Disease", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Post-Translational Modifications", Product: "Simple Western", Product1: "Ella", Product2: "AVITI" },
-                { Research: "PROTAC", Product: "Monolith", Product1: "Prometheus" },
-                { Research: "Protein Quality Control", Product: "Prometheus" },
-                { Research: "Protein Structure", Product: "Prometheus" },
-                { Research: "Proteomics", Product: "AVITI" },
-                { Research: "RNA Drugs", Product: "Monolith" },
-                { Research: "Signaling", Product: "Simple Western", Product1: "Ella", Product2: "AVITI" },
-                { Research: "Spatial Transcriptomic Analysis", Product: "AVITI" },
-                { Research: "Stem Cell", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Transcriptome", Product: "AVITI" },
-                { Research: "Tumor Metabolism", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf" },
-                { Research: "Tumor Microenvironment", Product: "Namocell", Product1: "Aurora", Product2: "Wolf" },
-                { Research: "Tumor Suppressor Genes", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" },
-                { Research: "Tumorigenesis", Product: "Simple Western", Product1: "Ella", Product2: "Namocell", Product3: "Aurora", Product4: "Wolf", Product5: "AVITI" }
-            ];
+      // Loading and parsing CSV data
+      React.useEffect(() => {
+        const csvData = loadFileData('AC U.csv');
+        Papa.parse(csvData, {
+          header: true,
+          skipEmptyLines: true,
+          transformHeader: header => header.trim().replace(/^"|"$/g, ''),
+          transform: (value, header) => value.trim().replace(/^"|"$/g, ''),
+          complete: (results) => {
+            const cleanedData = results.data.map(row => ({
+              PI: row['PI'] || '',
+              Institute: row['Institute'] || '',
+              Faculty: row['Faculty'] || '',
+              Department: row['Department/School'] || '',
+              Research: [
+                row['Research 1'] || '',
+                row['Research 2'] || '',
+                row['Research 3'] || '',
+                row['Research 4'] || '',
+                row['Research 5'] || '',
+                row['Research 6'] || ''
+              ].filter(r => r)
+            }));
+            setData(cleanedData);
+            setFilteredData(cleanedData);
+            setLoading(false);
+          },
+          error: (err) => {
+            console.error('Error parsing CSV:', err);
+            setLoading(false);
+          }
+        });
+      }, []);
 
-            const handleFileUpload = (event) => {
-                const file = event.target.files[0];
-                if (file) {
-                    Papa.parse(file, {
-                        header: true,
-                        skipEmptyLines: true,
-                        transformHeader: header => header.trim().replace(/^"|"$/g, ''),
-                        transform: value => value.trim().replace(/^"|"$/g, ''),
-                        complete: results => {
-                            setPiData(results.data.map(row => ({
-                                ...row,
-                                Research: [
-                                    row['Research Area 1'], row['Research Area 2'], row['Research Area 3'],
-                                    row['Research Area 4'], row['Research Area 5'], row['Research Area 6']
-                                ].filter(Boolean)
-                            })));
-                            setFileLoaded(true);
-                        },
-                        error: err => console.error('Parse error:', err)
-                    });
-                }
-            };
+      // Extracting unique values for filter dropdowns based on filtered data
+      const availableInstitutes = [...new Set(filteredData.map(item => item.Institute))].sort();
+      const availableFaculties = [...new Set(filteredData.map(item => item.Faculty))].sort();
+      const availableDepartments = [...new Set(filteredData.map(item => item.Department))].sort();
+      const availableResearchAreas = [...new Set(filteredData.flatMap(item => item.Research))].sort();
 
-            useEffect(() => {
-                // Load embedded Research Area 22.csv data
-                setProductData(researchAreaData.map(row => ({
-                    ...row,
-                    'Product ID': row.Product,
-                    'Part ID': row.Product === 'AVITI' ? 'AVITI-SYS' :
-                               row.Product === 'AVITI24' ? 'AVITI24-MO-KIT' :
-                               row.Product === 'AVITI Sequencing Kit' ? 'AVITI-SEQ-KIT' :
-                               row.Product + '-ID',
-                    Porfolios: row.Product === 'AVITI' ? 'Sequencing Platforms' :
-                               row.Product === 'AVITI24' ? 'Multi-Omics Solutions' :
-                               row.Product === 'AVITI Sequencing Kit' ? 'Sequencing Consumables' :
-                               'General',
-                    ResearchAreas: [
-                        row.Research,
-                        row.Research // Assuming Research applies to all products
-                    ].filter(Boolean)
-                })));
-            }, []);
+      // Handling filtering and search
+      React.useEffect(() => {
+        let filtered = [...data];
+        if (searchPI) {
+          filtered = filtered.filter(item => 
+            item.PI.toLowerCase().includes(searchPI.toLowerCase())
+          );
+        }
+        if (selectedInstitute) {
+          filtered = filtered.filter(item => item.Institute === selectedInstitute);
+        }
+        if (selectedFaculty) {
+          filtered = filtered.filter(item => item.Faculty === selectedFaculty);
+        }
+        if (selectedDepartment) {
+          filtered = filtered.filter(item => item.Department === selectedDepartment);
+        }
+        if (selectedResearch) {
+          filtered = filtered.filter(item => item.Research.includes(selectedResearch));
+        }
+        setFilteredData(filtered);
+      }, [searchPI, selectedInstitute, selectedFaculty, selectedDepartment, selectedResearch, data]);
 
-            const handleFilterChange = (name, selectedOptions) => {
-                setFilters(prev => ({
-                    ...prev,
-                    [name]: selectedOptions ? selectedOptions.map(option => option.value) : []
-                }));
-            };
+      // Exporting filtered data as CSV
+      const handleExport = () => {
+        const csv = Papa.unparse(filteredData.map(item => ({
+          PI: item.PI,
+          Institute: item.Institute,
+          Faculty: item.Faculty,
+          'Department/School': item.Department,
+          'Research 1': item.Research[0] || '',
+          'Research 2': item.Research[1] || '',
+          'Research 3': item.Research[2] || '',
+          'Research 4': item.Research[3] || '',
+          'Research 5': item.Research[4] || '',
+          'Research 6': item.Research[5] || ''
+        })));
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'researchers.csv';
+        link.click();
+      };
 
-            const getRecommendedProducts = (researchAreas) => {
-                const priorityProducts = ['AVITI', 'AVITI24', 'AVITI Sequencing Kit'];
-                const recommended = productData.filter(product => 
-                    product.ResearchAreas.some(productArea => 
-                        researchAreas.some(area => 
-                            productArea.toLowerCase() === area.toLowerCase()
-                        )
-                    ) && (filters.product.length === 0 || filters.product.includes(product['Product ID']))
-                ).map(product => ({
-                    PartID: product['Part ID'],
-                    Product: product['Product ID'],
-                    Portfolio: product.Porfolios,
-                    MatchedAreas: product.ResearchAreas.filter(area => 
-                        researchAreas.some(ra => 
-                            area.toLowerCase() === ra.toLowerCase()
-                        )),
-                    priority: priorityProducts.includes(product['Product ID'])
-                }));
+      // Color mapping for Institutes
+      const instituteColors = {
+        'CITYU': 'bg-blue-200',
+        'CUHK': 'bg-green-200',
+        'HKBU': 'bg-red-200',
+        'HKPU': 'bg-yellow-200',
+        'HKU': 'bg-purple-200',
+        'HKUST': 'bg-orange-200',
+        'MUST': 'bg-pink-200',
+        'UM': 'bg-teal-200'
+      };
 
-                return recommended.sort((a, b) => b.priority - a.priority);
-            };
+      // Function to get Institute color
+      const getInstituteColor = (institute) => instituteColors[institute] || 'bg-gray-200';
 
-            const filteredData = piData.filter(row => {
-                const piMatch = filters.pi.length === 0 || filters.pi.includes(row.PI);
-                const instituteMatch = filters.institute.length === 0 || filters.institute.includes(row.Institute);
-                const facultyMatch = filters.faculty.length === 0 || filters.faculty.includes(row.Faculty);
-                const deptMatch = filters.department.length === 0 || filters.department.includes(row['Department/School']);
-                const researchMatch = filters.research.length === 0 || 
-                    filters.research.every(r => row.Research.includes(r));
-                const productMatch = filters.product.length === 0 || 
-                    getRecommendedProducts(row.Research).some(p => filters.product.includes(p.Product));
-                return piMatch && instituteMatch && facultyMatch && deptMatch && researchMatch && productMatch;
-            });
+      // Rendering loading state
+      if (loading) {
+        return (
+          <div className="flex justify-center items-center h-screen">
+            <div className="text-xl font-semibold">Loading...</div>
+          </div>
+        );
+      }
 
-            const exportToCSV = () => {
-                const csvData = filteredData.map(row => ({
-                    PI: row.PI,
-                    Institute: row.Institute,
-                    Faculty: row.Faculty,
-                    'Department/School': row['Department/School'],
-                    Research: row.Research.join(', '),
-                    RecommendedProducts: getRecommendedProducts(row.Research)
-                        .map(p => `${p.Product} (${p.PartID})`)
-                        .join(', ')
-                }));
-                const csv = Papa.unparse(csvData);
-                const blob = new Blob([csv], { type: 'text/csv' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'recommended_products.csv';
-                a.click();
-                URL.revokeObjectURL(url);
-            };
+      // Rendering main UI
+      return (
+        <div className="container mx-auto p-4">
+          <h1 className="text-3xl font-bold mb-6 text-center">Researcher Information System</h1>
 
-            const exportToJSON = () => {
-                const jsonData = filteredData.map(row => ({
-                    PI: row.PI,
-                    Institute: row.Institute,
-                    Faculty: row.Faculty,
-                    Department: row['Department/School'],
-                    Research: row.Research,
-                    RecommendedProducts: getRecommendedProducts(row.Research).map(p => ({
-                        Product: p.Product,
-                        PartID: p.PartID,
-                        Portfolio: p.Portfolio || '',
-                        MatchedAreas: p.MatchedAreas
-                    }))
-                }));
-                const blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'recommended_products.json';
-                a.click();
-                URL.revokeObjectURL(url);
-            };
+          {/* Search and Filter Section */}
+          <div className="bg-white p-4 rounded-lg shadow-md mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <input
+                type="text"
+                placeholder="Search by PI"
+                className="border p-2 rounded w-full"
+                value={searchPI}
+                onChange={(e) => setSearchPI(e.target.value)}
+              />
+              <select
+                className="border p-2 rounded w-full"
+                value={selectedInstitute}
+                onChange={(e) => setSelectedInstitute(e.target.value)}
+              >
+                <option value="">All Institutes</option>
+                {availableInstitutes.map(institute => (
+                  <option key={institute} value={institute}>{institute}</option>
+                ))}
+              </select>
+              <select
+                className="border p-2 rounded w-full"
+                value={selectedFaculty}
+                onChange={(e) => setSelectedFaculty(e.target.value)}
+              >
+                <option value="">All Faculties</option>
+                {availableFaculties.map(faculty => (
+                  <option key={faculty} value={faculty}>{faculty}</option>
+                ))}
+              </select>
+              <select
+                className="border p-2 rounded w-full"
+                value={selectedDepartment}
+                onChange={(e) => setSelectedDepartment(e.target.value)}
+              >
+                <option value="">All Departments</option>
+                {availableDepartments.map(dept => (
+                  <option key={dept} value={dept}>{dept}</option>
+                ))}
+              </select>
+              <select
+                className="border p-2 rounded w-full"
+                value={selectedResearch}
+                onChange={(e) => setSelectedResearch(e.target.value)}
+              >
+                <option value="">All Research Areas</option>
+                {availableResearchAreas.map(area => (
+                  <option key={area} value={area}>{area}</option>
+                ))}
+              </select>
+            </div>
+            <div className="flex justify-end mt-4">
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                onClick={handleExport}
+              >
+                Export CSV
+              </button>
+            </div>
+          </div>
 
-            const getFilteredOptions = (key, filterKey) => {
-                return [...new Set(piData
-                    .filter(row => {
-                        const checks = {
-                            pi: filters.pi.length === 0 || filters.pi.includes(row.PI),
-                            institute: filters.institute.length === 0 || filters.institute.includes(row.Institute),
-                            faculty: filters.faculty.length === 0 || filters.faculty.includes(row.Faculty),
-                            department: filters.department.length === 0 || filters.department.includes(row['Department/School']),
-                            research: filters.research.length === 0 || filters.research.every(r => row.Research.includes(r)),
-                            product: filters.product.length === 0 || getRecommendedProducts(row.Research).some(p => filters.product.includes(p.Product))
-                        };
-                        return Object.keys(checks)
-                            .filter(k => k !== filterKey)
-                            .every(k => checks[k]);
-                    })
-                    .map(row => {
-                        if (key === 'research') return row.Research;
-                        if (key === 'product') return getRecommendedProducts(row.Research).map(p => p.Product);
-                        return row[key];
-                    })
-                    .flat()
-                )].sort().map(value => ({ value, label: value }));
-            };
+          {/* Data Table */}
+          <div className="bg-white rounded-lg shadow-md overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="border p-2 text-left">PI</th>
+                  <th className="border p-2 text-left">Institute</th>
+                  <th className="border p-2 text-left">Faculty</th>
+                  <th className="border p-2 text-left">Department/School</th>
+                  <th className="border p-2 text-left">Research Areas</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredData.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="border p-2">{item.PI}</td>
+                    <td className={`border p-2 ${getInstituteColor(item.Institute)} text-black`}>
+                      {item.Institute}
+                    </td>
+                    <td className="border p-2">{item.Faculty}</td>
+                    <td className="border p-2">{item.Department}</td>
+                    <td className="border p-2">
+                      {item.Research.map((area, idx) => (
+                        <span key={idx} className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mr-1 mb-1">
+                          {area}
+                        </span>
+                      ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    };
 
-            const uniquePIs = getFilteredOptions('PI', 'pi');
-            const uniqueInstitutes = getFilteredOptions('Institute', 'institute');
-            const uniqueFaculties = getFilteredOptions('Faculty', 'faculty');
-            const uniqueDepartments = getFilteredOptions('Department/School', 'department');
-            const uniqueResearchAreas = getFilteredOptions('research', 'research');
-            const uniqueProducts = [...new Set(productData.map(p => p['Product ID']))].sort().map(value => ({ value, label: value }));
-
-            const instituteColors = {
-                'CITYU': 'bg-blue-200',
-                'CUHK': 'bg-green-200',
-                'HKBU': 'bg-yellow-200',
-                'HKPU': 'bg-red-200',
-                'HKU': 'bg-purple-100',
-                'HKUST': 'bg-orange-200',
-                'MUST': 'bg-pink-200',
-                'UM': 'bg-teal-200'
-            };
-
-            return (
-                <div className="container mx-auto p-4">
-                    <h1 className="text-2xl font-bold mb-4">Product Recommendation System</h1>
-                    
-                    <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Upload AC HKU.csv</label>
-                        <input
-                            type="file"
-                            accept=".csv"
-                            onChange={handleFileUpload}
-                            className="border p-2 rounded-md w-full"
-                        />
-                        {!fileLoaded && (
-                            <p className="text-red-500 mt-2">Please upload AC HKU.csv to proceed.</p>
-                        )}
-                    </div>
-
-                    {fileLoaded && (
-                        <>
-                            <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4">
-                                <div>
-                                    <Select
-                                        isMulti
-                                        name="pi"
-                                        options={uniquePIs}
-                                        value={uniquePIs.filter(option => filters.pi.includes(option.value))}
-                                        onChange={(selected) => handleFilterChange('pi', selected)}
-                                        placeholder="Select PIs..."
-                                        className="react-select-container"
-                                        classNamePrefix="react-select"
-                                    />
-                                    <div className="mt-2 text-sm">
-                                        <p>Selected: {filters.pi.join(', ') || 'None'}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Select
-                                        isMulti
-                                        name="institute"
-                                        options={uniqueInstitutes}
-                                        value={uniqueInstitutes.filter(option => filters.institute.includes(option.value))}
-                                        onChange={(selected) => handleFilterChange('institute', selected)}
-                                        placeholder="Select Institutes..."
-                                        className="react-select-container"
-                                        classNamePrefix="react-select"
-                                    />
-                                    <div className="mt-2 text-sm">
-                                        <p>Selected: {filters.institute.join(', ') || 'None'}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Select
-                                        isMulti
-                                        name="faculty"
-                                        options={uniqueFaculties}
-                                        value={uniqueFaculties.filter(option => filters.faculty.includes(option.value))}
-                                        onChange={(selected) => handleFilterChange('faculty', selected)}
-                                        placeholder="Select Faculties..."
-                                        className="react-select-container"
-                                        classNamePrefix="react-select"
-                                    />
-                                    <div className="mt-2 text-sm">
-                                        <p>Selected: {filters.faculty.join(', ') || 'None'}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Select
-                                        isMulti
-                                        name="department"
-                                        options={uniqueDepartments}
-                                        value={uniqueDepartments.filter(option => filters.department.includes(option.value))}
-                                        onChange={(selected) => handleFilterChange('department', selected)}
-                                        placeholder="Select Departments..."
-                                        className="react-select-container"
-                                        classNamePrefix="react-select"
-                                    />
-                                    <div className="mt-2 text-sm">
-                                        <p>Selected: {filters.department.join(', ') || 'None'}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Select
-                                        isMulti
-                                        name="research"
-                                        options={uniqueResearchAreas}
-                                        value={uniqueResearchAreas.filter(option => filters.research.includes(option.value))}
-                                        onChange={(selected) => handleFilterChange('research', selected)}
-                                        placeholder="Select Research Areas..."
-                                        className="react-select-container"
-                                        classNamePrefix="react-select"
-                                    />
-                                    <div className="mt-2 text-sm">
-                                        <p>Selected: {filters.research.join(', ') || 'None'}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <Select
-                                        isMulti
-                                        name="product"
-                                        options={uniqueProducts}
-                                        value={uniqueProducts.filter(option => filters.product.includes(option.value))}
-                                        onChange={(selected) => handleFilterChange('product', selected)}
-                                        placeholder="Select Products..."
-                                        className="react-select-container"
-                                        classNamePrefix="react-select"
-                                    />
-                                    <div className="mt-2 text-sm">
-                                        <p>Selected: {filters.product.join(', ') || 'None'}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex space-x-4 mb-4">
-                                <button
-                                    onClick={exportToCSV}
-                                    className="bg-blue-600 text-white font-semibold px-6 py-2 rounded hover:bg-blue-700"
-                                >
-                                    Export to CSV
-                                </button>
-                                <button
-                                    onClick={exportToJSON}
-                                    className="bg-green-600 text-white font-semibold px-6 py-2 rounded hover:bg-green-700"
-                                >
-                                    Export to JSON
-                                </button>
-                                <button
-                                    onClick={() => setViewMode(viewMode === 'card' ? 'table' : 'card')}
-                                    className="bg-gray-600 text-white font-semibold px-6 py-2 rounded hover:bg-gray-700"
-                                >
-                                    Switch to {viewMode === 'card' ? 'Table' : 'Card'} View
-                                </button>
-                            </div>
-
-                            {viewMode === 'card' ? (
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {filteredData.length > 0 ? (
-                                        filteredData.map((row, index) => (
-                                            <div
-                                                key={index}
-                                                className="border p-4 rounded-lg bg-white shadow-md cursor-pointer hover:shadow-lg transition"
-                                                onClick={() => setSelectedProfile(row)}
-                                            >
-                                                <h3 className="font-bold text-xl text-gray-800">{row.PI}</h3>
-                                                <p className="text-gray-600"><strong>Institute:</strong> <span className={`${instituteColors[row.Institute] || 'bg-gray-100'} px-3 py-1 rounded-md`}>{row.Institute}</span></p>
-                                                <p className="text-gray-600"><strong>Faculty:</strong> {row.Faculty}</p>
-                                                <p className="text-gray-600"><strong>Department:</strong> {row['Department/School']}</p>
-                                                <p className="text-gray-600"><strong>Research:</strong> {row.Research.join(', ')}</p>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <p className="text-gray-500 text-center col-span-3">No results found.</p>
-                                    )}
-                                </div>
-                            ) : (
-                                <div className="overflow-x-auto">
-                                    <table className="min-w-full bg-white border rounded-md shadow-md">
-                                        <thead>
-                                            <tr className="bg-gray-100">
-                                                <th className="px-4 py-2 text-left text-gray-600 font-medium">PI</th>
-                                                <th className="px-4 py-2 text-left text-gray-600 font-medium">Institute</th>
-                                                <th className="px-4 py-2 text-left text-gray-600 font-medium">Faculty</th>
-                                                <th className="px-4 py-2 text-left text-gray-600 font-medium">Department</th>
-                                                <th className="px-4 py-2 text-left text-gray-600 font-medium">Research Areas</th>
-                                                <th className="px-4 py-2 text-left text-gray-600 font-medium">Recommended Products</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {filteredData.length > 0 ? (
-                                                filteredData.map((row, index) => (
-                                                    <tr
-                                                        key={index}
-                                                        className="border-t cursor-pointer hover:bg-gray-50"
-                                                        onClick={() => setSelectedProfile(row)}
-                                                    >
-                                                        <td className="px-4 py-2 text-gray-800">{row.PI}</td>
-                                                        <td className="px-4 py-2">
-                                                            <span className={`${instituteColors[row.Institute] || 'bg-gray-100'} px-3 py-1 rounded-md`}>{row.Institute}</span>
-                                                        </td>
-                                                        <td className="px-4 py-2 text-gray-600">{row.Faculty}</td>
-                                                        <td className="px-4 py-2 text-gray-600">{row['Department/School']}</td>
-                                                        <td className="px-4 py-2 text-gray-600">{row.Research.join(', ')}</td>
-                                                        <td className="px-4 py-2 text-gray-600">
-                                                            {getRecommendedProducts(row.Research).length > 0 ? (
-                                                                getRecommendedProducts(row.Research)
-                                                                    .map(p => `${p.Product} (${p.PartID})`)
-                                                                    .join(', ')
-                                                            ) : 'None'}
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan="6" className="px-4 py-2 text-center text-gray-500">No results found.</td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            )}
-                        </>
-                    )}
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<ProductRecommendationSystem />);
-    </script>
+    // Rendering the App
+    root.render(<App />);
+  </script>
 </body>
 </html>
