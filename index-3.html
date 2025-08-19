@@ -1,613 +1,589 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {"HKPU&UM-PI.csv":"PI,Insitute,Faculty,Department/School,Research 1,Research 2,Research 3,Research 4,Research 5,Research 6\r\nTerrence Kin Wah LEE,HKPU,Science,ABCT,Cancer,Stem Cell,Drug,,,\r\nLarry Ming Cheung CHOW,HKPU,Science,ABCT,Cancer,Drug,Parasitic Diseases,,,\r\nKwok Yin WONG,HKPU,Science,ABCT,Antimicrobial,,,,,\r\nGary Ka Leung WONG,HKPU,Science,ABCT,Cancer,,,,,\r\nDong Sheng LIU,HKPU,Science,ABCT,DNA modification,RNA modification,circular mRNA,Epigenetics,Tissue engineering,\r\nYan Xiang ZHAO,HKPU,Science,ABCT,Autophagy,Binding affinity,Cancer,,,\r\nZhong Ping YAO,HKPU,Science,ABCT,Protein Structures,Multi-omics,,,,\r\nThomas Yun Chung LEUNG,HKPU,Science,ABCT,Protein Engineering,Drug,,,,\r\nXin ZHAO,HKPU,Science,ABCT,Tissue engineering,,,,,\r\nLei ZHOU,HKPU,Science,ABCT,Proteomics,Metabolomics,Multi-omics,,,\r\nVincent Wee Keong KENG,HKPU,Science,ABCT,Cancer,Genetics,,,,\r\nBen Chi Bun KO,HKPU,Science,ABCT,Hepatocellular Carcinoma,Drug Discovery ,,,,\r\nWilson Chun Yu LAU,HKPU,Science,ABCT,cryo-EM,Structural biology,,,,\r\nCong MA,HKPU,Science,ABCT,Drug,,,,,\r\nQian ZHAO,HKPU,Science,ABCT,Drug,Cancer,Metabolomics,Multi-omics,,\r\nQuan Hua MU,HKPU,Science,ABCT,Cancer,Multi-omics,Bioinformatics,,,\r\nWilliam Chi Shing TAI,HKPU,Science,ABCT,Cancer,Inflammatory,Exosomes,Drug ,,\r\nZhi Wu TAN,HKPU,Science,ABCT,Tumor microenvironment,T cell,Immunity,Cancer,Immunotherapies,\r\nClarence Tsun Ting WONG,HKPU,Science,ABCT,Immunotherapies,Protein Modification,,,,\r\nWing Leung WONG,HKPU,Science,ABCT,Binding affinity,Drug ,,,,\r\nXiu Lian YU,HKPU,Science,ABCT,cryo-EM,,,,,\r\nXian YANG,HKPU,Science,ABCT,Variable Surface Glycoprotein,Structural biology,,,,\r\nLi Ping ZHOU,HKPU,Science,ABCT,Chinese Medicine ,Stem cell,,,,\r\nXiang ZOU,HKPU,Health & Social Sciences,HTI,Allergy,Vaccine,Immunology,Mast cell biology,,\r\nShea Ping YIP,HKPU,Health & Social Sciences,HTI,Genetics,Blood cancers,,,,\r\nWei Xiong ZHANG,HKPU,Health & Social Sciences,HTI,Genetics,Genomics,Cancer,,,\r\nPolly Hang Mei LEUNG,HKPU,Health & Social Sciences,HTI,Cancer,,,,,\r\nGilman Kit Hang SIU,HKPU,Health & Social Sciences,HTI,Antimicrobial,Infectious Diseases,,,,\r\nKenneth King Yip CHENG,HKPU,Health & Social Sciences,HTI,Cardiovascular diseases,,,,,\r\nChien Ling HUANG,HKPU,Health & Social Sciences,HTI,Haematology,Stem Cell,,,,\r\nLiang Ting LIN,HKPU,Health & Social Sciences,HTI,Epigentic,Extracellular vesicles,,,,\r\nAlvin Chun Hang MA,HKPU,Health & Social Sciences,HTI,Haematology,Autophagy,,,,\r\nChi Ming WONG,HKPU,Health & Social Sciences,HTI,Diabetes,,,,,\r\nDavid Yin CAI,HKPU,Health & Social Sciences,HTI,Metabolomics,,,,,\r\nKeith Cheuk Lun LEE,HKPU,Health & Social Sciences,HTI,Stem cell,Extracellular vesicles,,,,\r\nGloria Hoi Yee LI,HKPU,Health & Social Sciences,HTI,Genetics,Bioinformatics,,,,\r\nJerry Jun Yi CHEN,HKPU,Health & Social Sciences,HTI,Genetics,Sing Cell,Bioinformatics,,,\r\nFranklin Wang Ngai CHOW,HKPU,Health & Social Sciences,HTI,Infectious Diseases,,,,,\r\nDa DI,HKPU,Health & Social Sciences,HTI,Infectious Diseases,,,,,\r\nHui Ge LIN,HKPU,Health & Social Sciences,HTI,Metabolomics,Proteomics,,,,\r\nSulaiman Jordy Evan,HKPU,Health & Social Sciences,HTI,Metabolomics,,,,,\r\nQing XIONG,HKPU,Health & Social Sciences,HTI,Bioinformatics,Infectious Diseases,Allergy,Genomics,,\r\nMartin Ho Yin YEUNG,HKPU,Health & Social Sciences,HTI,Metabolomics,,,,,\r\nThomas LAM,HKPU,Health & Social Sciences,SO,Multi-omics,,,,,\r\nJennifer BIAN,HKPU,Health & Social Sciences,SO,Multi-omics,,,,,\r\nBin LIN,HKPU,Health & Social Sciences,SO,Multi-omics,Stem Cell,,,,\r\nFeng PAN,HKPU,Health & Social Sciences,SO,Multi-omics,Stem Cell,,,,\r\nHenry Ho Lung CHAN,HKPU,Health & Social Sciences,SO,Multi-omics,,,,,\r\nDennis TSE,HKPU,Health & Social Sciences,SO,Multi-omics,,,,,\r\nSamuel ABOKYI,HKPU,Health & Social Sciences,SO,Stem Cell,,,,,\r\nEllen TAN,HKPU,Health & Social Sciences,SO,Stem Cell,,,,,\r\nChu Xia DENG,UM,Health Sciences,BMS,Cancer,Oncogenes,Drug Development,Tumor Suppressor Genes,Drug Development,\r\nWei GE,UM,Health Sciences,BMS,Aging,Genome Editing,Drug Discovery,,,\r\nHan Ming SHEN,UM,Health Sciences,BMS,Cancer Cell Biology,Cancer Metabolism,,,,\r\nXin CHEN,UM,Health Sciences,PHARM,Chinese Medicine,Immunology,Immunotherapy,Cancer,Autoimmunity,\r\nRen He XU,UM,Health Sciences,BMS,Stem Cells ,iPSC,,,,\r\nGuo Kai CHEN,UM,Health Sciences,BMS,Stem Cells ,iPSC,,,,\r\nXiu Ping CHEN,UM,Health Sciences,PHARM,Tumor metastasis ,,,,,\r\nEdwin Chong Wing CHEUNG,UM,Health Sciences,BMS,Nuclear Hormone Signaling,Cancer ,,,,\r\nHenry Hang Fai KWOK,UM,Health Sciences,BMS,Antibodies Development,Cancer Biomarkers,Immunotherapy,,,\r\nElaine Lai Han LEUNG,UM,Health Sciences,BMS,Oncology,Gut Microbiota,Cancer Biomarkers ,Cancer,Drug Discovery,\r\nDuncan Chung Hang LEUNG,UM,Health Sciences,BMS,Drug discovery,,,,,\r\nPeng LI,UM,Health Sciences,PHARM,Proteomics,Metabolomics,,,,\r\nJin Jian LU,UM,Health Sciences,PHARM,Drug discovery,,,,,\r\nKathy Qian LUO,UM,Health Sciences,BMS,Cancer Biology,Aging,,,,\r\nHuan Xing SU,UM,Health Sciences,PHARM,iPSC,Neurodegenerative diseases,,,,\r\nRu YAN ,UM,Health Sciences,PHARM,Gut microbiota,,,,,\r\nWen Hua ZHENG,UM,Health Sciences,PHARM,Aging,Neurodegenerative diseases,Drug Development,,,\r\nGyeong Hun BAEG,UM,Health Sciences,BMS,Aging,Stem Cells ,Signaling,,,\r\nWilliam Chong Hang CHAO,UM,Health Sciences,BMS,Post-translational modifications,,,,,\r\nLi Jun DI,UM,Health Sciences,BMS,Tumorigenesis,Metastasis,Tumor Metabolism,Tumor Microenvironment,,\r\nCheng Wei HE,UM,Health Sciences,PHARM,Anticancer ,,,,,\r\nMaggie Pui Man HOI ,UM,Health Sciences,PHARM,Neurodegnerative,Inflammatory responses,,,,\r\nLeo Tsz On LEE,UM,Health Sciences,BMS,Signaling,Cancer ,RNA Drugs,,,\r\nKevin Yue LI,UM,Health Sciences,PHARM,Neurogenesis,Drug Discovery,Genetics,Genomics,Proteomics,Metabolomics\r\nGang LI,UM,Health Sciences,BMS,Post-translational modifications,Signal,Epigenetics,,,\r\nLI Gen LIN,UM,Health Sciences,PHARM,Drug Discovery,,,,,\r\nTzu Ming LIU,UM,Health Sciences,BMS,Tumor Microenvironment,,,,,\r\nJia Hong LU,UM,Health Sciences,PHARM,Genomics,Proteomics,Drug Discovery,,,\r\nTerence Chuen Wai POON,UM,Health Sciences,BMS,Bioinformatics,Proteomics,Cancer,,,\r\nNing Yi SHAO,UM,Health Sciences,BMS,Bioinformatics,Epigenetics,Multi-omics,,,\r\nJoong Sup SHIM,UM,Health Sciences,PHARM,Cancer,Genetic,Tumor Suppressor Genes,,,\r\nKin Yip TAM,UM,Health Sciences,PHARM,Cancer Metabolism,Alzheimer's disease,Drug Discovery,,,\r\nVivien Ya-Fan WANG,UM,Health Sciences,BMS,Signal ,Post-Translational Modifications,,,,\r\nEmily Ying WANG,UM,Health Sciences,PHARM,Inflammatory bowel disease,Signal ,,,,\r\nChris Koon Ho WONG,UM,Health Sciences,BMS,Immunology,Cancer,,,,\r\nRui Yu XIE,UM,Health Sciences,BMS,Stem Cells ,Cancer,Epigenetics,,,\r\nQi ZHAO,UM,Health Sciences,BMS,Immunotherapy,Antibody-based Therapeutics,,,,\r\nWakam CHANG,UM,Health Sciences,BMS,Aging,,,,,\r\nQi Han CHEN,UM,Health Sciences,BMS,Genetic,Epigenetics,,,,\r\nQiang CHEN,UM,Health Sciences,BMS,Oncogenes,Tumor Suppressor Genes,Cancer Metabolism,Metabolic Diseases,Inflammatory Diseases,\r\nAi Fang CHENG,UM,Health Sciences,BMS,Neurodegenerative Diseases,,,,,\r\nCheong Meng CHONG,UM,Health Sciences,BMS,Aging,,,,,\r\nChon Kit CHOU,UM,Health Sciences,PHARM,Immunity,Cancer,Autoimmune diseases,,,\r\nXiao Fan DING,UM,Health Sciences,BMS,Tumor Microenvironment,Cancer,Epigenetics,Genomics,,\r\nKa Wai Fung,UM,Health Sciences,BMS,Protein Structure,,,,,\r\nEdwin Ka Yiu KONG,UM,Health Sciences,BMS,Cancer,Protein Quality Control,Genomics,PROTAC,,\r\nSusan Xiao Wen MAO,UM,Health Sciences,PHARM,Tumor microenvironment,Cancer,Exosomes,,,\r\nKai MIAO,UM,Health Sciences,BMS,Genomics,Tumor Metastasis,,,,\r\nChen MING,UM,Health Sciences,BMS,Multi-omics,Neurodegenerative Diseases,Spatial Transcriptomic Analysis,Bioinformatics,Genetics,\r\nHe SONG,UM,Health Sciences,PHARM,Drug discovery,,,,,\r\nZheng Hai TANG,UM,Health Sciences,BMS,Immunity,Cancer,,,,\r\nLi WANG,UM,Health Sciences,BMS,Metabolic Diseases,Cancer Metabolism,,,,\r\nZhang Feng ZHONG,UM,Health Sciences,PHARM,Exosomes,Extracellular vesicles,,,,","Research Area 22.csv":"Research ,Product,Product 1,Product 2,Product 3,Product 4,Product 5\r\nAging,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nAlzheimer's Disease,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nAnti-aging,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nAntibodies Development,Monolith,Prometheus,,,,\r\nAntibody-based Therapeutics,Monolith,Prometheus,,,,\r\nAnticancer,Simple Western,Ella,Namocell,AVITI,,\r\nAutoimmunity,Simple Western,Ella,Namocell,Aurora,Wolf,\r\nAutoimmune diseases,Simple Western,Ella,Namocell,Aurora,Wolf,\r\nBioinformatics,AVITI,,,,,\r\nCancer,Simple Western,Ella,Namocell,AVITI,,\r\nCancer Biomarkers,Simple Western,Ella,Namocell,AVITI,,\r\nCancer Cell Biology,Simple Western,Ella,Namocell,AVITI,,\r\nCancer Metabolism,Simple Western,Ella,Namocell,AVITI,,\r\nCancer Therapy,Simple Western,Ella,Namocell,AVITI,,\r\nCell-based High Throughtput Screening System,Monolith,,,,,\r\nChinese Medicine,Monolith,,,,,\r\nDrug Development,Monolith,,,,,\r\nDrug Discovery,Monolith,,,,,\r\nEpigenetics,AVITI,Monolith,,,,\r\nExosomes,Namocell,Aurora,Wolf,AVITI,,\r\nExtracellular vesicles,Namocell,Aurora,Wolf,AVITI,,\r\nGenetic Screening,AVITI,,,,,\r\nGenetics,AVITI,,,,,\r\nGenome,AVITI,,,,,\r\nGenome Editing,AVITI,,,,,\r\nGenome-wide screening ,AVITI,,,,,\r\nGenomics,AVITI,,,,,\r\nGut Microbiota,AVITI,,,,,\r\nImmunity,Namocell,Aurora,Wolf,,,\r\nImmunology,Namocell,Aurora,Wolf,,,\r\nImmuotherapy,Namocell,Aurora,Wolf,,,\r\nInflammation,Namocell,Aurora,Wolf,,,\r\nInflammatory bowel disease,Namocell,Aurora,Wolf,,,\r\nInflammatory Diseases,Namocell,Aurora,Wolf,,,\r\nInflammatory responses,Namocell,Aurora,Wolf,,,\r\niPSC,Namocell,Aurora,Wolf,AVITI,,\r\nMetabolic Disease,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nMetabolomics,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nMolecular Pharmaceutics,Monolith,,,,,\r\nMulti-omics,AVITI,,,,,\r\nNeurodegenerative Diseases,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nNeurogenesis,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nNeuronal Degenerative ,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nNeurosciences,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nOncogenes,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nOncology,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nParkinson's Disease,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nPost-Translational Modifications,Simple Western,Ella,AVITI,,,\r\nPROTAC,Monolith,Prometheus,,,,\r\nProtein Quality Control,Prometheus,,,,,\r\nProtein Structure ,Prometheus,,,,,\r\nProteomics,AVITI,,,,,\r\nRNA Drugs,Monolith,,,,,\r\nSignaling,Simple Western,Ella,AVITI,,,\r\nSpatial Transcriptomic Analysis,AVITI,,,,,\r\nStem Cell,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nTranscriptome ,AVITI,,,,,\r\nTumor Metabolism,Simple Western,Ella,Namocell,Aurora,Wolf,\r\nTumor Microenvironment,Namocell,Aurora,Wolf,,,\r\nTumor Suppressor Genes,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI\r\nTumorigenesis,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI"};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PI Product Recommendation System</title>
+  <title>Product Recommendation System</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+    }
+    .dropdown-enter {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+    .dropdown-enter-active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition: opacity 300ms ease-out, transform 300ms ease-out;
+    }
+    .dropdown-exit {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .dropdown-exit-active {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+      transition: opacity 300ms ease-out, transform 300ms ease-out;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .checkbox-scale {
+      transition: transform 0.2s ease;
+    }
+    .checkbox-scale:checked {
+      transform: scale(1.1);
+    }
+    .tag-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tag-hover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-<body className="bg-gray-100 min-h-screen">
+<body class="min-h-screen">
   <div id="root"></div>
-
   <script type="text/babel">
-    // Initializing React application
-    const { useState, useEffect } = React;
+    // Institute color scheme
+    const instituteColors = {
+      CITYU: 'bg-gradient-to-r from-blue-200 to-blue-300 text-blue-900',
+      CUHK: 'bg-gradient-to-r from-purple-200 to-purple-300 text-purple-900',
+      HKBU: 'bg-gradient-to-r from-green-200 to-green-300 text-green-900',
+      HKPU: 'bg-gradient-to-r from-yellow-200 to-yellow-300 text-yellow-900',
+      HKU: 'bg-gradient-to-r from-red-200 to-red-300 text-red-900',
+      HKUST: 'bg-gradient-to-r from-teal-200 to-teal-300 text-teal-900',
+      MUST: 'bg-gradient-to-r from-pink-200 to-pink-300 text-pink-900',
+      UM: 'bg-gradient-to-r from-indigo-200 to-indigo-300 text-indigo-900'
+    };
+
+    // Research tag colors
+    const researchColors = [
+      'bg-gradient-to-r from-red-200 to-red-300 text-red-900',
+      'bg-gradient-to-r from-blue-200 to-blue-300 text-blue-900',
+      'bg-gradient-to-r from-green-200 to-green-300 text-green-900',
+      'bg-gradient-to-r from-yellow-200 to-yellow-300 text-yellow-900',
+      'bg-gradient-to-r from-purple-200 to-purple-300 text-purple-900',
+      'bg-gradient-to-r from-pink-200 to-pink-300 text-pink-900',
+      'bg-gradient-to-r from-teal-200 to-teal-300 text-teal-900',
+      'bg-gradient-to-r from-orange-200 to-orange-300 text-orange-900',
+      'bg-gradient-to-r from-cyan-200 to-cyan-300 text-cyan-900',
+      'bg-gradient-to-r from-indigo-200 to-indigo-300 text-indigo-900',
+      'bg-gradient-to-r from-gray-200 to-gray-300 text-gray-900',
+      'bg-gradient-to-r from-lime-200 to-lime-300 text-lime-900',
+      'bg-gradient-to-r from-amber-200 to-amber-300 text-amber-900',
+      'bg-gradient-to-r from-emerald-200 to-emerald-300 text-emerald-900',
+      'bg-gradient-to-r from-fuchsia-200 to-fuchsia-300 text-fuchsia-900'
+    ];
+
+    // Product tag color
+    const productColor = 'bg-gradient-to-r from-green-200 to-green-300 text-green-900';
 
     // Main App component
     function App() {
-      // State management for data and filters
-      const [piData, setPiData] = useState([]);
-      const [productData, setProductData] = useState([]);
-      const [loading, setLoading] = useState(true);
-      const [error, setError] = useState(null);
-      const [filters, setFilters] = useState({
+      const [piData, setPiData] = React.useState([]);
+      const [topSellerData, setTopSellerData] = React.useState([]);
+      const [researchV2Data, setResearchV2Data] = React.useState([]);
+      const [loading, setLoading] = React.useState(true);
+      const [searchQuery, setSearchQuery] = React.useState('');
+      const [filters, setFilters] = React.useState({
+        institute: [],
+        faculty: [],
+        department: [],
+        research: []
+      });
+      const [filterSearches, setFilterSearches] = React.useState({
         institute: '',
         faculty: '',
         department: '',
-        pi: '',
         research: ''
       });
+      const [openDropdown, setOpenDropdown] = React.useState(null);
+      const [expandedProducts, setExpandedProducts] = React.useState({});
 
-      // Loading and parsing CSV data
-      useEffect(() => {
-        async function loadData() {
-          try {
-            // Loading Research Area 22.csv
-            const productCsv = `Research,Product,Product 1,Product 2,Product 3,Product 4,Product 5
-Aging,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Alzheimer's Disease,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Anti-aging,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Antibodies Development,Monolith,Prometheus
-Antibody-based Therapeutics,Monolith,Prometheus
-Anticancer,Simple Western,Ella,Namocell,AVITI
-Autoimmunity,Simple Western,Ella,Namocell,Aurora,Wolf
-Autoimmune diseases,Simple Western,Ella,Namocell,Aurora,Wolf
-Bioinformatics,AVITI
-Cancer,Simple Western,Ella,Namocell,AVITI
-Cancer Biomarkers,Simple Western,Ella,Namocell,AVITI
-Cancer Cell Biology,Simple Western,Ella,Namocell,AVITI
-Cancer Metabolism,Simple Western,Ella,Namocell,AVITI
-Cancer Therapy,Simple Western,Ella,Namocell,AVITI
-Cell-based High Throughtput Screening System,Monolith
-Chinese Medicine,Monolith
-Drug Development,Monolith
-Drug Discovery,Monolith
-Epigenetics,AVITI,Monolith
-Exosomes,Namocell,Aurora,Wolf,AVITI
-Extracellular vesicles,Namocell,Aurora,Wolf,AVITI
-Genetic Screening,AVITI
-Genetics,AVITI
-Genome,AVITI
-Genome Editing,AVITI
-Genome-wide screening,AVITI
-Genomics,AVITI
-Gut Microbiota,AVITI
-Immunity,Namocell,Aurora,Wolf
-Immunology,Namocell,Aurora,Wolf
-Immuotherapy,Namocell,Aurora,Wolf
-Inflammation,Namocell,Aurora,Wolf
-Inflammatory bowel disease,Namocell,Aurora,Wolf
-Inflammatory Diseases,Namocell,Aurora,Wolf
-Inflammatory responses,Namocell,Aurora,Wolf
-iPSC,Namocell,Aurora,Wolf,AVITI
-Metabolic Disease,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Metabolomics,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Molecular Pharmaceutics,Monolith
-Multi-omics,AVITI
-Neurodegenerative Diseases,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Neurogenesis,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Neuronal Degenerative,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Neurosciences,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Oncogenes,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Oncology,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Parkinson's Disease,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Post-Translational Modifications,Simple Western,Ella,AVITI
-PROTAC,Monolith,Prometheus
-Protein Quality Control,Prometheus
-Protein Structure,Prometheus
-Proteomics,AVITI
-RNA Drugs,Monolith
-Signaling,Simple Western,Ella,AVITI
-Spatial Transcriptomic Analysis,AVITI
-Stem Cell,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Transcriptome,AVITI
-Tumor Metabolism,Simple Western,Ella,Namocell,Aurora,Wolf
-Tumor Microenvironment,Namocell,Aurora,Wolf
-Tumor Suppressor Genes,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI
-Tumorigenesis,Simple Western,Ella,Namocell,Aurora,Wolf,AVITI`;
-            const productResult = Papa.parse(productCsv, {
+      // Load and parse CSV data
+      React.useEffect(() => {
+        const piCsv = loadFileData("AC U.csv");
+        Papa.parse(piCsv, {
+          header: true,
+          skipEmptyLines: true,
+          transformHeader: header => header.trim().replace(/^"|"$/g, ''),
+          transform: (value, header) => {
+            let cleaned = value.trim().replace(/^"|"$/g, '');
+            cleaned = cleaned.replace(/Modificationsss/gi, 'Modifications');
+            cleaned = cleaned.replace(/Variants/gi, 'Variants');
+            return cleaned === '' ? null : cleaned;
+          },
+          complete: (results) => {
+            setPiData(results.data);
+            const topSellerCsv = loadFileData("Top Seller-SC.csv");
+            Papa.parse(topSellerCsv, {
               header: true,
               skipEmptyLines: true,
-              transform: (value) => value.trim().replace(/^"|"$/g, '')
+              transformHeader: header => header.trim().replace(/^"|"$/g, ''),
+              transform: (value, header) => {
+                let cleaned = value.trim().replace(/^"|"$/g, '');
+                return cleaned === '' ? null : cleaned;
+              },
+              complete: (topSellerResults) => {
+                setTopSellerData(topSellerResults.data);
+                const researchV2Csv = loadFileData("Research v2.csv");
+                Papa.parse(researchV2Csv, {
+                  header: true,
+                  skipEmptyLines: true,
+                  transformHeader: header => header.trim().replace(/^"|"$/g, ''),
+                  transform: (value, header) => {
+                    let cleaned = value.trim().replace(/^"|"$/g, '');
+                    return cleaned === '' ? null : cleaned;
+                  },
+                  complete: (researchV2Results) => {
+                    setResearchV2Data(researchV2Results.data);
+                    setLoading(false);
+                  },
+                  error: (err) => {
+                    console.error('Error parsing Research v2.csv:', err);
+                    setLoading(false);
+                  }
+                });
+              },
+              error: (err) => {
+                console.error('Error parsing Top Seller-SC.csv:', err);
+                setLoading(false);
+              }
             });
-
-            // Loading HKPU&UM-PI.csv
-            const piCsv = `PI,Insitute,Faculty,Department/School,Research 1,Research 2,Research 3,Research 4,Research 5,Research 6
-Terrence Kin Wah LEE,HKPU,Science,ABCT,Cancer,Stem Cell,Drug,,
-Larry Ming Cheung CHOW,HKPU,Science,ABCT,Cancer,Drug,Parasitic Diseases,,
-Kwok Yin WONG,HKPU,Science,ABCT,Antimicrobial,,,
-Gary Ka Leung WONG,HKPU,Science,ABCT,Cancer,,,
-Dong Sheng LIU,HKPU,Science,ABCT,DNA modification,RNA modification,circular mRNA,Epigenetics,Tissue engineering,
-Yan Xiang ZHAO,HKPU,Science,ABCT,Autophagy,Binding affinity,Cancer,,
-Zhong Ping YAO,HKPU,Science,ABCT,Protein Structures,Multi-omics,,
-Thomas Yun Chung LEUNG,HKPU,Science,ABCT,Protein Engineering,Drug,,
-Xin ZHAO,HKPU,Science,ABCT,Tissue engineering,,,
-Lei ZHOU,HKPU,Science,ABCT,Proteomics,Metabolomics,Multi-omics,,
-Vincent Wee Keong KENG,HKPU,Science,ABCT,Cancer,Genetics,,
-Ben Chi Bun KO,HKPU,Science,ABCT,Hepatocellular Carcinoma,Drug Discovery,,
-Wilson Chun Yu LAU,HKPU,Science,ABCT,cryo-EM,Structural biology,,
-Cong MA,HKPU,Science,ABCT,Drug,,,
-Qian ZHAO,HKPU,Science,ABCT,Drug,Cancer,Metabolomics,Multi-omics,,
-Quan Hua MU,HKPU,Science,ABCT,Cancer,Multi-omics,Bioinformatics,,
-William Chi Shing TAI,HKPU,Science,ABCT,Cancer,Inflammatory,Exosomes,Drug,,
-Zhi Wu TAN,HKPU,Science,ABCT,Tumor microenvironment,T cell,Immunity,Cancer,Immunotherapies,
-Clarence Tsun Ting WONG,HKPU,Science,ABCT,Immunotherapies,Protein Modification,,
-Wing Leung WONG,HKPU,Science,ABCT,Binding affinity,Drug,,
-Xiu Lian YU,HKPU,Science,ABCT,cryo-EM,,,
-Xian YANG,HKPU,Science,ABCT,Variable Surface Glycoprotein,Structural biology,,
-Li Ping ZHOU,HKPU,Science,ABCT,Chinese Medicine,Stem cell,,
-Xiang ZOU,HKPU,Health & Social Sciences,HTI,Allergy,Vaccine,Immunology,Mast cell biology,,
-Shea Ping YIP,HKPU,Health & Social Sciences,HTI,Genetics,Blood cancers,,
-Wei Xiong ZHANG,HKPU,Health & Social Sciences,HTI,Genetics,Genomics,Cancer,,
-Polly Hang Mei LEUNG,HKPU,Health & Social Sciences,HTI,Cancer,,,
-Gilman Kit Hang SIU,HKPU,Health & Social Sciences,HTI,Antimicrobial,Infectious Diseases,,
-Kenneth King Yip CHENG,HKPU,Health & Social Sciences,HTI,Cardiovascular diseases,,,
-Chien Ling HUANG,HKPU,Health & Social Sciences,HTI,Haematology,Stem Cell,,
-Liang Ting LIN,HKPU,Health & Social Sciences,HTI,Epigentic,Extracellular vesicles,,
-Alvin Chun Hang MA,HKPU,Health & Social Sciences,HTI,Haematology,Autophagy,,
-Chi Ming WONG,HKPU,Health & Social Sciences,HTI,Diabetes,,,
-David Yin CAI,HKPU,Health & Social Sciences,HTI,Metabolomics,,,
-Keith Cheuk Lun LEE,HKPU,Health & Social Sciences,HTI,Stem cell,Extracellular vesicles,,
-Gloria Hoi Yee LI,HKPU,Health & Social Sciences,HTI,Genetics,Bioinformatics,,
-Jerry Jun Yi CHEN,HKPU,Health & Social Sciences,HTI,Genetics,Sing Cell,Bioinformatics,,
-Franklin Wang Ngai CHOW,HKPU,Health & Social Sciences,HTI,Infectious Diseases,,,
-Da DI,HKPU,Health & Social Sciences,HTI,Infectious Diseases,,,
-Hui Ge LIN,HKPU,Health & Social Sciences,HTI,Metabolomics,Proteomics,,
-Sulaiman Jordy Evan,HKPU,Health & Social Sciences,HTI,Metabolomics,,,
-Qing XIONG,HKPU,Health & Social Sciences,HTI,Bioinformatics,Infectious Diseases,Allergy,Genomics,,
-Martin Ho Yin YEUNG,HKPU,Health & Social Sciences,HTI,Metabolomics,,,
-Thomas LAM,HKPU,Health & Social Sciences,SO,Multi-omics,,,
-Jennifer BIAN,HKPU,Health & Social Sciences,SO,Multi-omics,,,
-Bin LIN,HKPU,Health & Social Sciences,SO,Multi-omics,Stem Cell,,
-Feng PAN,HKPU,Health & Social Sciences,SO,Multi-omics,Stem Cell,,
-Henry Ho Lung CHAN,HKPU,Health & Social Sciences,SO,Multi-omics,,,
-Dennis TSE,HKPU,Health & Social Sciences,SO,Multi-omics,,,
-Samuel ABOKYI,HKPU,Health & Social Sciences,SO,Stem Cell,,,
-Ellen TAN,HKPU,Health & Social Sciences,SO,Stem Cell,,,
-Chu Xia DENG,UM,Health Sciences,BMS,Cancer,Oncogenes,Drug Development,Tumor Suppressor Genes,Drug Development,
-Wei GE,UM,Health Sciences,BMS,Aging,Genome Editing,Drug Discovery,,
-Han Ming SHEN,UM,Health Sciences,BMS,Cancer Cell Biology,Cancer Metabolism,,
-Xin CHEN,UM,Health Sciences,PHARM,Chinese Medicine,Immunology,Immunotherapy,Cancer,Autoimmunity,
-Ren He XU,UM,Health Sciences,BMS,Stem Cells,iPSC,,
-Guo Kai CHEN,UM,Health Sciences,BMS,Stem Cells,iPSC,,
-Xiu Ping CHEN,UM,Health Sciences,PHARM,Tumor metastasis,,,
-Edwin Chong Wing CHEUNG,UM,Health Sciences,BMS,Nuclear Hormone Signaling,Cancer,,
-Henry Hang Fai KWOK,UM,Health Sciences,BMS,Antibodies Development,Cancer Biomarkers,Immunotherapy,,
-Elaine Lai Han LEUNG,UM,Health Sciences,BMS,Oncology,Gut Microbiota,Cancer Biomarkers,Cancer,Drug Discovery,
-Duncan Chung Hang LEUNG,UM,Health Sciences,BMS,Drug discovery,,,
-Peng LI,UM,Health Sciences,PHARM,Proteomics,Metabolomics,,
-Jin Jian LU,UM,Health Sciences,PHARM,Drug discovery,,,
-Kathy Qian LUO,UM,Health Sciences,BMS,Cancer Biology,Aging,,
-Huan Xing SU,UM,Health Sciences,PHARM,iPSC,Neurodegenerative diseases,,
-Ru YAN,UM,Health Sciences,PHARM,Gut microbiota,,,
-Wen Hua ZHENG,UM,Health Sciences,PHARM,Aging,Neurodegenerative diseases,Drug Development,,
-Gyeong Hun BAEG,UM,Health Sciences,BMS,Aging,Stem Cells,Signaling,,
-William Chong Hang CHAO,UM,Health Sciences,BMS,Post-translational modifications,,,
-Li Jun DI,UM,Health Sciences,BMS,Tumorigenesis,Metastasis,Tumor Metabolism,Tumor Microenvironment,,
-Cheng Wei HE,UM,Health Sciences,PHARM,Anticancer,,,
-Maggie Pui Man HOI,UM,Health Sciences,PHARM,Neurodegnerative,Inflammatory responses,,
-Leo Tsz On LEE,UM,Health Sciences,BMS,Signaling,Cancer,RNA Drugs,,
-Kevin Yue LI,UM,Health Sciences,PHARM,Neurogenesis,Drug Discovery,Genetics,Genomics,Proteomics,Metabolomics
-Gang LI,UM,Health Sciences,BMS,Post-translational modifications,Signal,Epigenetics,,
-LI Gen LIN,UM,Health Sciences,PHARM,Drug Discovery,,,
-Tzu Ming LIU,UM,Health Sciences,BMS,Tumor Microenvironment,,,
-Jia Hong LU,UM,Health Sciences,PHARM,Genomics,Proteomics,Drug Discovery,,
-Terence Chuen Wai POON,UM,Health Sciences,BMS,Bioinformatics,Proteomics,Cancer,,
-Ning Yi SHAO,UM,Health Sciences,BMS,Bioinformatics,Epigenetics,Multi-omics,,
-Joong Sup SHIM,UM,Health Sciences,PHARM,Cancer,Genetic,Tumor Suppressor Genes,,
-Kin Yip TAM,UM,Health Sciences,PHARM,Cancer Metabolism,Alzheimer's disease,Drug Discovery,,
-Vivien Ya-Fan WANG,UM,Health Sciences,BMS,Signal,Post-Translational Modifications,,
-Emily Ying WANG,UM,Health Sciences,PHARM,Inflammatory bowel disease,Signal,,
-Chris Koon Ho WONG,UM,Health Sciences,BMS,Immunology,Cancer,,
-Rui Yu XIE,UM,Health Sciences,BMS,Stem Cells,Cancer,Epigenetics,,
-Qi ZHAO,UM,Health Sciences,BMS,Immunotherapy,Antibody-based Therapeutics,,
-Wakam CHANG,UM,Health Sciences,BMS,Aging,,,
-Qi Han CHEN,UM,Health Sciences,BMS,Genetic,Epigenetics,,
-Qiang CHEN,UM,Health Sciences,BMS,Oncogenes,Tumor Suppressor Genes,Cancer Metabolism,Metabolic Diseases,Inflammatory Diseases,
-Ai Fang CHENG,UM,Health Sciences,BMS,Neurodegenerative Diseases,,,
-Cheong Meng CHONG,UM,Health Sciences,BMS,Aging,,,
-Chon Kit CHOU,UM,Health Sciences,PHARM,Immunity,Cancer,Autoimmune diseases,,
-Xiao Fan DING,UM,Health Sciences,BMS,Tumor Microenvironment,Cancer,Epigenetics,Genomics,,
-Ka Wai Fung,UM,Health Sciences,BMS,Protein Structure,,,
-Edwin Ka Yiu KONG,UM,Health Sciences,BMS,Cancer,Protein Quality Control,Genomics,PROTAC,,
-Susan Xiao Wen MAO,UM,Health Sciences,PHARM,Tumor microenvironment,Cancer,Exosomes,,
-Kai MIAO,UM,Health Sciences,BMS,Genomics,Tumor Metastasis,,
-Chen MING,UM,Health Sciences,BMS,Multi-omics,Neurodegenerative Diseases,Spatial Transcriptomic Analysis,Bioinformatics,Genetics,
-He SONG,UM,Health Sciences,PHARM,Drug discovery,,,
-Zheng Hai TANG,UM,Health Sciences,BMS,Immunity,Cancer,,
-Li WANG,UM,Health Sciences,BMS,Metabolic Diseases,Cancer Metabolism,,
-Zhang Feng ZHONG,UM,Health Sciences,PHARM,Exosomes,Extracellular vesicles,,`;
-            const piResult = Papa.parse(piCsv, {
-              header: true,
-              skipEmptyLines: true,
-              transform: (value) => value.trim().replace(/^"|"$/g, '')
-            });
-
-            // Cleaning and processing product data
-            const cleanedProductData = productResult.data.map(row => ({
-              research: row['Research'] || '',
-              products: [
-                row['Product'],
-                row['Product 1'],
-                row['Product 2'],
-                row['Product 3'],
-                row['Product 4'],
-                row['Product 5']
-              ].filter(product => product && product.trim() !== '')
-            })).filter(row => row.research && row.products.length > 0);
-
-            // Cleaning and processing PI data
-            const cleanedPiData = piResult.data.map(row => ({
-              pi: row['PI'] || '',
-              institute: row['Insitute'] || '',
-              faculty: row['Faculty'] || '',
-              department: row['Department/School'] || '',
-              researchAreas: [
-                row['Research 1'],
-                row['Research 2'],
-                row['Research 3'],
-                row['Research 4'],
-                row['Research 5'],
-                row['Research 6']
-              ].filter(area => area && area.trim() !== '')
-            })).filter(row => row.pi && row.institute && row.faculty && row.department);
-
-            setProductData(cleanedProductData);
-            setPiData(cleanedPiData);
-            setLoading(false);
-          } catch (err) {
-            setError('Failed to load or parse data: ' + err.message);
+          },
+          error: (err) => {
+            console.error('Error parsing AC U.csv:', err);
             setLoading(false);
           }
-        }
-        loadData();
+        });
       }, []);
 
-      // Computing unique filter options, sorted alphabetically
-      const getUniqueValues = (key) => {
-        const values = [...new Set(piData.map(item => item[key]).filter(val => val))];
-        return values.sort();
+      // Compute product recommendations
+      const getRecommendedProducts = React.useMemo(() => {
+        return (piRow) => {
+          const piResearch = [
+            piRow['Research 1'], piRow['Research 2'], piRow['Research 3'],
+            piRow['Research 4'], piRow['Research 5'], piRow['Research 6']
+          ].filter(Boolean).map(r => r.toLowerCase());
+          if (piResearch.length === 0) return [];
+
+          // Match Top Seller-SC.csv products
+          const topSellerProducts = topSellerData
+            .filter(product => {
+              const productResearch = [
+                product['Research Area'], product['Research Area 1'], product['Research Area 2'],
+                product['Research Area 3'], product['Research Area 4'], product['Research Area 5'],
+                product['Research Area 6'], product['Research Area 7'], product['Research Area 8'],
+                product['Research Area 9'], product['Research Area 10']
+              ].filter(Boolean).map(r => r.toLowerCase());
+              return piResearch.some(pr => productResearch.some(prodR => prodR.includes(pr)));
+            })
+            .map(product => product['Product']);
+
+          // Match Research v2.csv products
+          const researchV2Products = researchV2Data
+            .filter(product => {
+              const productResearch = product['Research']?.toLowerCase();
+              return piResearch.includes(productResearch);
+            })
+            .flatMap(product => [
+              product['Product'], product['Product 1'], product['Product 2'],
+              product['Product 3'], product['Product 4'], product['Product 5']
+            ].filter(Boolean));
+
+          // Combine and deduplicate products
+          return [...new Set([...topSellerProducts, ...researchV2Products])];
+        };
+      }, [topSellerData, researchV2Data]);
+
+      // Generate CSV for filtered data
+      const generateCSV = () => {
+        const headers = ['PI', 'Institute', 'Faculty', 'Department', 'Research Areas', 'Recommended Products'];
+        const rows = filteredData.map(row => {
+          const researchAreas = [
+            row['Research 1'], row['Research 2'], row['Research 3'],
+            row['Research 4'], row['Research 5'], row['Research 6']
+          ].filter(Boolean).join(', ');
+          const products = getRecommendedProducts(row).join(', ');
+          return [
+            `"${row['PI']?.replace(/"/g, '""') || ''}"`,
+            `"${row['Institute']?.replace(/"/g, '""') || ''}"`,
+            `"${row['Faculty']?.replace(/"/g, '""') || ''}"`,
+            `"${row['Department']?.replace(/"/g, '""') || ''}"`,
+            `"${researchAreas.replace(/"/g, '""')}"`,
+            `"${products.replace(/"/g, '""')}"`
+          ];
+        });
+        const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'filtered_results.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
       };
 
-      const institutes = getUniqueValues('institute');
-      const faculties = filters.institute
-        ? getUniqueValues('faculty').filter(faculty =>
-            piData.some(item => item.institute === filters.institute && item.faculty === faculty)
-          )
-        : [];
-      const departments = filters.faculty
-        ? getUniqueValues('department').filter(dept =>
-            piData.some(item =>
-              item.institute === filters.institute &&
-              item.faculty === filters.faculty &&
-              item.department === dept
-            )
-          )
-        : [];
-      const pis = filters.department
-        ? getUniqueValues('pi').filter(pi =>
-            piData.some(item =>
-              item.institute === filters.institute &&
-              item.faculty === filters.faculty &&
-              item.department === filters.department &&
-              item.pi === pi
-            )
-          )
-        : [];
-      const researchAreas = filters.pi
-        ? [...new Set(piData.find(item => item.pi === filters.pi)?.researchAreas || [])].sort()
-        : [];
+      // Toggle expand/collapse for products
+      const toggleExpandProducts = (index) => {
+        setExpandedProducts(prev => ({
+          ...prev,
+          [index]: !prev[index]
+        }));
+      };
 
-      // Handling filter changes
-      const handleFilterChange = (key, value) => {
-        const newFilters = { ...filters, [key]: value };
+      // Compute dynamic filter options
+      const getFilteredData = () => {
+        return piData.filter(row => {
+          const matchesInstitute = filters.institute.length === 0 || filters.institute.includes(row['Institute']);
+          return matchesInstitute;
+        });
+      };
 
-        // Resetting subsequent filters when a higher-level filter changes
-        if (key === 'institute') {
-          newFilters.faculty = '';
-          newFilters.department = '';
-          newFilters.pi = '';
-          newFilters.research = '';
-        } else if (key === 'faculty') {
-          newFilters.department = '';
-          newFilters.pi = '';
-          newFilters.research = '';
-        } else if (key === 'department') {
-          newFilters.pi = '';
-          newFilters.research = '';
-        } else if (key === 'pi') {
-          newFilters.research = '';
+      const institutes = [...new Set(piData.map(row => row['Institute']))].filter(Boolean).sort();
+      const faculties = [...new Set(getFilteredData().map(row => row['Faculty']))].filter(Boolean).sort();
+      const departments = [...new Set(getFilteredData().map(row => row['Department']))].filter(Boolean).sort();
+      const researchAreas = [...new Set(
+        piData.flatMap(row => [
+          row['Research 1'], row['Research 2'], row['Research 3'],
+          row['Research 4'], row['Research 5'], row['Research 6']
+        ]).filter(Boolean)
+      )].sort();
+
+      // Assign colors to research areas
+      const researchColorMap = React.useMemo(() => {
+        const map = {};
+        researchAreas.forEach((area, index) => {
+          map[area] = researchColors[index % researchColors.length];
+        });
+        return map;
+      }, [researchAreas]);
+
+      // Filter data based on search and filters
+      const filteredData = piData.filter(row => {
+        const matchesSearch = !searchQuery || 
+          (row['PI'] && row['PI'].toLowerCase().includes(searchQuery.toLowerCase()));
+        const matchesInstitute = filters.institute.length === 0 || filters.institute.includes(row['Institute']);
+        const matchesFaculty = filters.faculty.length === 0 || filters.faculty.includes(row['Faculty']);
+        const matchesDepartment = filters.department.length === 0 || filters.department.includes(row['Department']);
+        const matchesResearch = filters.research.length === 0 || 
+          filters.research.some(area => [
+            row['Research 1'], row['Research 2'], row['Research 3'],
+            row['Research 4'], row['Research 5'], row['Research 6']
+          ].includes(area));
+        return matchesSearch && matchesInstitute && matchesFaculty && matchesDepartment && matchesResearch;
+      });
+
+      // Handle filter changes
+      const toggleFilter = (filterKey, value) => {
+        setFilters(prev => {
+          const newSelections = prev[filterKey].includes(value)
+            ? prev[filterKey].filter(v => v !== value)
+            : [...prev[filterKey], value];
+          const newFilters = { ...prev, [filterKey]: newSelections };
+          if (filterKey === 'institute') {
+            newFilters.faculty = [];
+            newFilters.department = [];
+          }
+          return newFilters;
+        });
+      };
+
+      // Clear filter selections
+      const clearFilter = (filterKey) => {
+        setFilters(prev => {
+          const newFilters = { ...prev, [filterKey]: [] };
+          if (filterKey === 'institute') {
+            newFilters.faculty = [];
+            newFilters.department = [];
+          }
+          return newFilters;
+        });
+        setFilterSearches(prev => ({ ...prev, [filterKey]: '' }));
+      };
+
+      // Handle search input for filters
+      const handleFilterSearch = (filterKey, value) => {
+        setFilterSearches(prev => ({ ...prev, [filterKey]: value }));
+      };
+
+      // Get filtered options for each filter
+      const getFilteredOptions = (filterKey) => {
+        const search = filterSearches[filterKey].toLowerCase();
+        let options;
+        switch (filterKey) {
+          case 'institute':
+            options = institutes;
+            break;
+          case 'faculty':
+            options = faculties;
+            break;
+          case 'department':
+            options = departments;
+            break;
+          case 'research':
+            options = researchAreas;
+            break;
+          default:
+            options = [];
         }
-
-        setFilters(newFilters);
+        return options.filter(opt => !search || opt.toLowerCase().includes(search));
       };
 
-      // Getting matched products for a research area
-      const getMatchedProducts = (research) => {
-        if (!research) return [];
-        const productEntry = productData.find(p => p.research.toLowerCase() === research.toLowerCase());
-        return productEntry ? [...productEntry.products].sort() : [];
+      // Toggle dropdown visibility
+      const toggleDropdown = (filterKey) => {
+        setOpenDropdown(prev => (prev === filterKey ? null : filterKey));
       };
 
-      // Generating product recommendation list for all PIs
-      const getProductRecommendationList = () => {
-        return piData.map(pi => {
-          const researchDetails = pi.researchAreas.map(area => ({
-            research: area,
-            products: getMatchedProducts(area)
-          }));
-          const allProducts = researchDetails.flatMap(detail => detail.products);
-          const uniqueProducts = [...new Set(allProducts)].sort();
-          return {
-            pi: pi.pi,
-            institute: pi.institute,
-            faculty: pi.faculty,
-            department: pi.department,
-            researchDetails,
-            uniqueProducts
-          };
-        }).sort((a, b) => a.pi.localeCompare(b.pi)); // Sort PIs alphabetically
+      // Close dropdown when clicking outside
+      const dropdownRefs = {
+        institute: React.useRef(null),
+        faculty: React.useRef(null),
+        department: React.useRef(null),
+        research: React.useRef(null)
       };
+      React.useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (Object.values(dropdownRefs).every(ref => ref.current && !ref.current.contains(event.target))) {
+            setOpenDropdown(null);
+          }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+      }, []);
 
-      // Getting all unique matched products across all PIs
-      const getAllUniqueMatchedProducts = () => {
-        const allProducts = piData.flatMap(pi => 
-          pi.researchAreas.flatMap(area => getMatchedProducts(area))
+      // Loading state
+      if (loading) {
+        return (
+          <div className="flex justify-center items-center h-screen">
+            <div className="text-2xl font-bold text-gray-800">Loading...</div>
+          </div>
         );
-        return [...new Set(allProducts)].sort();
-      };
+      }
 
-      // Rendering loading or error state
-      if (loading) return <div className="text-center text-xl p-10">Loading...</div>;
-      if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
-
-      // Rendering main UI
-      return (
-        <div className="container mx-auto p-6">
-          <h1 className="text-3xl font-bold mb-6 text-center text-indigo-600">
-            PI Product Recommendation System
-          </h1>
-
-          {/* Rendering all unique matched products */}
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold mb-4 text-indigo-600">
-              All Unique Matched Products Across All PIs
-            </h2>
-            <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-              <p><strong>Products:</strong></p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {getAllUniqueMatchedProducts().length > 0 ? (
-                  getAllUniqueMatchedProducts().map(product => (
-                    <span
-                      key={product}
-                      className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full"
-                    >
-                      {product}
-                    </span>
-                  ))
-                ) : (
-                  <span className="text-gray-500 text-sm">No products matched</span>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Rendering hierarchical dropdowns */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Institute</label>
-              <select
-                className="mt-1 block w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                value={filters.institute}
-                onChange={(e) => handleFilterChange('institute', e.target.value)}
+      // Filter component
+      function FilterDropdown({ filterKey, label }) {
+        const isOpen = openDropdown === filterKey;
+        const filteredOptions = getFilteredOptions(filterKey);
+        const pluralLabel = {
+          institute: 'Institutes',
+          faculty: 'Faculties',
+          department: 'Departments',
+          research: 'Research Areas'
+        }[filterKey];
+        return (
+          <div className="relative" ref={dropdownRefs[filterKey]}>
+            <label className="block text-sm font-semibold text-gray-800 mb-2">{pluralLabel}</label>
+            <button
+              onClick={() => toggleDropdown(filterKey)}
+              className="w-full p-4 bg-white border border-gray-200 rounded-xl shadow-sm text-left flex justify-between items-center focus:outline-none focus:ring-4 focus:ring-blue-300/50 hover:bg-gray-50 transition duration-300"
+              aria-expanded={isOpen}
+              aria-label={`Toggle ${pluralLabel} filter`}
+            >
+              <span className="truncate font-medium text-gray-800">
+                {filters[filterKey].length > 0 
+                  ? `${filters[filterKey].length} ${pluralLabel} Selected`
+                  : `Select ${pluralLabel}`}
+              </span>
+              <svg
+                className={`w-5 h-5 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} text-gray-600`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <option value="">Select Institute</option>
-                {institutes.map(inst => (
-                  <option key={inst} value={inst}>{inst}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Faculty</label>
-              <select
-                className="mt-1 block w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                value={filters.faculty}
-                onChange={(e) => handleFilterChange('faculty', e.target.value)}
-                disabled={!filters.institute}
-              >
-                <option value="">Select Faculty</option>
-                {faculties.map(fac => (
-                  <option key={fac} value={fac}>{fac}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Department/School</label>
-              <select
-                className="mt-1 block w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                value={filters.department}
-                onChange={(e) => handleFilterChange('department', e.target.value)}
-                disabled={!filters.faculty}
-              >
-                <option value="">Select Department</option>
-                {departments.map(dept => (
-                  <option key={dept} value={dept}>{dept}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">PI</label>
-              <select
-                className="mt-1 block w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                value={filters.pi}
-                onChange={(e) => handleFilterChange('pi', e.target.value)}
-                disabled={!filters.department}
-              >
-                <option value="">Select PI</option>
-                {pis.map(pi => (
-                  <option key={pi} value={pi}>{pi}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Research Area</label>
-              <select
-                className="mt-1 block w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                value={filters.research}
-                onChange={(e) => handleFilterChange('research', e.target.value)}
-                disabled={!filters.pi}
-              >
-                <option value="">Select Research Area</option>
-                {researchAreas.map(area => (
-                  <option key={area} value={area}>{area}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* Rendering selected PI details */}
-          {filters.pi && (
-            <div className="mt-6">
-              <h2 className="text-xl font-semibold mb-4 text-indigo-600">
-                Details for Selected PI: {filters.pi}
-              </h2>
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <p><strong>Institute:</strong> {filters.institute}</p>
-                <p><strong>Faculty:</strong> {filters.faculty}</p>
-                <p><strong>Department:</strong> {filters.department}</p>
-                <p><strong>PI:</strong> {filters.pi}</p>
-                <p><strong>All Research Areas:</strong></p>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {piData.find(item => item.pi === filters.pi)?.researchAreas.map(area => (
-                    <span
-                      key={area}
-                      className="inline-block bg-gray-100 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full"
-                    >
-                      {area}
-                    </span>
-                  ))}
-                </div>
-                {filters.research && (
-                  <div className="mt-4">
-                    <p><strong>Selected Research Area:</strong> {filters.research}</p>
-                    <p><strong>Matched Products:</strong></p>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {getMatchedProducts(filters.research).length > 0 ? (
-                        getMatchedProducts(filters.research).map(product => (
-                          <span
-                            key={product}
-                            className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full"
-                          >
-                            {product}
-                          </span>
-                        ))
-                      ) : (
-                        <span className="text-gray-500 text-sm">No products matched</span>
-                      )}
-                    </div>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isOpen && (
+              <div className="absolute z-30 mt-3 w-full bg-white border border-gray-200 rounded-xl shadow-2xl dropdown-enter dropdown-enter-active">
+                <div className="p-5">
+                  <div className="flex justify-between items-center mb-4">
+                    <input
+                      type="text"
+                      placeholder={`Search ${pluralLabel}...`}
+                      value={filterSearches[filterKey]}
+                      onChange={(e) => handleFilterSearch(filterKey, e.target.value)}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 text-gray-800"
+                      aria-label={`Search ${pluralLabel}`}
+                    />
+                    {filters[filterKey].length > 0 && (
+                      <button
+                        onClick={() => clearFilter(filterKey)}
+                        className="ml-3 px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition duration-300 font-medium"
+                        aria-label={`Clear ${pluralLabel} Filters`}
+                      >
+                        Clear
+                      </button>
+                    )}
                   </div>
-                )}
+                  <div className="max-h-72 overflow-y-auto">
+                    {filteredOptions.map(option => (
+                      <div
+                        key={option}
+                        className="flex items-center p-3 cursor-pointer hover:bg-gray-100 rounded-lg transition duration-300"
+                        onClick={() => toggleFilter(filterKey, option)}
+                        role="checkbox"
+                        aria-checked={filters[filterKey].includes(option)}
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && toggleFilter(filterKey, option)}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={filters[filterKey].includes(option)}
+                          onChange={() => {}}
+                          className="mr-3 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 checkbox-scale"
+                        />
+                        <span className={`px-3 py-1 rounded-lg text-sm font-medium ${filterKey === 'research' ? researchColorMap[option] : 'text-gray-800'}`}>
+                          {option}
+                        </span>
+                      </div>
+                    ))}
+                    {filteredOptions.length === 0 && (
+                      <div className="p-3 text-gray-500 text-sm">No {pluralLabel.toLowerCase()} found</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      return (
+        <div className="container mx-auto p-8 max-w-7xl fade-in">
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <h1 className="text-4xl font-extrabold text-gray-900 mb-8 tracking-tight">Product Recommendation System</h1>
+            
+            {/* Search Bar */}
+            <div className="mb-8">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search by PI..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full p-4 pl-12 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-300/50 transition duration-300 text-gray-800 text-lg"
+                  aria-label="Search by Principal Investigator"
+                />
+                <svg
+                  className="absolute left-4 top-4 w-6 h-6 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </div>
             </div>
-          )}
 
-          {/* Rendering product recommendation list for all PIs */}
-          <div className="mt-10">
-            <h2 className="text-xl font-semibold mb-4 text-indigo-600">
-              Product Recommendation List for All PIs
-            </h2>
+            {/* Filters */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <FilterDropdown filterKey="institute" label="Institutes" />
+              <FilterDropdown filterKey="faculty" label="Faculties" />
+              <FilterDropdown filterKey="department" label="Departments" />
+              <FilterDropdown filterKey="research" label="Research Areas" />
+            </div>
+          </div>
+
+          {/* Download CSV Button and Data Table */}
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden fade-in">
+            <div className="p-5 flex justify-end">
+              <button
+                onClick={generateCSV}
+                className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition duration-300 font-medium"
+                aria-label="Download filtered results as CSV"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && generateCSV()}
+              >
+                Download CSV
+              </button>
+            </div>
             <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border rounded-lg shadow">
-                <thead>
-                  <tr className="bg-indigo-100">
-                    <th className="py-3 px-4 border text-left text-indigo-800">PI</th>
-                    <th className="py-3 px-4 border text-left text-indigo-800">Institute</th>
-                    <th className="py-3 px-4 border text-left text-indigo-800">Faculty</th>
-                    <th className="py-3 px-4 border text-left text-indigo-800">Department/School</th>
-                    <th className="py-3 px-4 border text-left text-indigo-800">Research Areas & Products</th>
-                    <th className="py-3 px-4 border text-left text-indigo-800">All Matched Products</th>
+              <table className="w-full">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="p-5 text-left text-base font-bold text-gray-800">PI</th>
+                    <th className="p-5 text-left text-base font-bold text-gray-800">Institute</th>
+                    <th className="p-5 text-left text-base font-bold text-gray-800">Faculty</th>
+                    <th className="p-5 text-left text-base font-bold text-gray-800">Department</th>
+                    <th className="p-5 text-left text-base font-bold text-gray-800">Research Areas</th>
+                    <th className="p-5 text-left text-base font-bold text-gray-800">Recommended Products</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {getProductRecommendationList().map(entry => (
-                    <tr key={entry.pi} className="hover:bg-gray-50">
-                      <td className="py-2 px-4 border">{entry.pi}</td>
-                      <td className="py-2 px-4 border">{entry.institute}</td>
-                      <td className="py-2 px-4 border">{entry.faculty}</td>
-                      <td className="py-2 px-4 border">{entry.department}</td>
-                      <td className="py-2 px-4 border">
-                        {entry.researchDetails.map(detail => (
-                          <div key={detail.research} className="mb-2">
-                            <p className="font-medium">{detail.research}:</p>
-                            <div className="flex flex-wrap gap-2">
-                              {detail.products.length > 0 ? (
-                                detail.products.map(product => (
-                                  <span
-                                    key={product}
-                                    className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full"
-                                  >
-                                    {product}
-                                  </span>
-                                ))
-                              ) : (
-                                <span className="text-gray-500 text-sm">No products matched</span>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </td>
-                      <td className="py-2 px-4 border">
-                        <div className="flex flex-wrap gap-2">
-                          {entry.uniqueProducts.length > 0 ? (
-                            entry.uniqueProducts.map(product => (
+                  {filteredData.map((row, index) => {
+                    const products = getRecommendedProducts(row);
+                    const isExpanded = expandedProducts[index];
+                    const displayProducts = isExpanded ? products : products.slice(0, 4);
+                    return (
+                      <tr
+                        key={index}
+                        className={`border-b border-gray-200 hover:bg-gray-50 transition duration-300 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+                      >
+                        <td className="p-5 text-gray-800 text-lg">{row['PI']}</td>
+                        <td className="p-5">
+                          <span className={`px-4 py-2 rounded-full text-sm font-semibold tag-hover ${instituteColors[row['Institute']]}`}>
+                            {row['Institute']}
+                          </span>
+                        </td>
+                        <td className="p-5 text-gray-800 text-lg">{row['Faculty']}</td>
+                        <td className="p-5 text-gray-800 text-lg">{row['Department']}</td>
+                        <td className="p-5">
+                          {[
+                            row['Research 1'], row['Research 2'], row['Research 3'],
+                            row['Research 4'], row['Research 5'], row['Research 6']
+                          ].filter(Boolean).map((area, i) => (
+                            <span
+                              key={i}
+                              className={`inline-block px-4 py-2 rounded-full text-sm font-semibold mr-2 mb-2 tag-hover ${researchColorMap[area]}`}
+                            >
+                              {area}
+                            </span>
+                          ))}
+                        </td>
+                        <td className="p-5">
+                          <div className="flex flex-wrap gap-2">
+                            {displayProducts.map((product, i) => (
                               <span
-                                key={product}
-                                className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full"
+                                key={i}
+                                className={`inline-block px-4 py-2 rounded-full text-sm font-semibold tag-hover ${productColor}`}
                               >
                                 {product}
                               </span>
-                            ))
-                          ) : (
-                            <span className="text-gray-500 text-sm">No products matched</span>
+                            ))}
+                          </div>
+                          {products.length > 4 && (
+                            <button
+                              onClick={() => toggleExpandProducts(index)}
+                              className="mt-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition duration-300 font-medium text-sm"
+                              aria-label={isExpanded ? "Show fewer products" : "Show more products"}
+                              tabIndex={0}
+                              onKeyDown={(e) => e.key === 'Enter' && toggleExpandProducts(index)}
+                            >
+                              {isExpanded ? 'Show Less' : 'Show More'}
+                            </button>
                           )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -616,7 +592,7 @@ Zhang Feng ZHONG,UM,Health Sciences,PHARM,Exosomes,Extracellular vesicles,,`;
       );
     }
 
-    // Rendering the app to the DOM
+    // Render the app
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
